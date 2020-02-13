@@ -2,9 +2,8 @@ package com.khj.bbs.service;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 import com.khj.bbs.dto.BoardVO;
+import com.khj.bbs.dto.Criteria;
 
 public interface BoardService {
 
@@ -13,6 +12,7 @@ public interface BoardService {
 	public BoardVO selectOne(int bno);
 	public void update(BoardVO board);
 	public void delete(int bno);
-	
+	public List<BoardVO> selectAll(Criteria cri);
+	public int totalCount(Criteria cri);
 	
 }
