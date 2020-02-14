@@ -4,14 +4,42 @@ public class Criteria {
 	
 	private int page;
 	private int perPageNum;
+	private String type;
+	private String keyword;
 	
 	public Criteria() {
 		this.page=1;
 		this.perPageNum=10;
 	}
 	
+	public Criteria(int page, int perPageNum) {
+		this.page=page;
+		this.perPageNum=perPageNum;
+	}
+	
+	public String [] getTypeArr() {
+		// type이 null이면 String을 새로 생성하고, 여러개가 들어오면 split해서 배열에 넣는다
+		System.out.println(type);
+		return type==null?new String[] {}:type.split("");
+	}	
 	
 	
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
 	public void setPage(int page) {
 		if(page <= 0) {
 			this.page=1;

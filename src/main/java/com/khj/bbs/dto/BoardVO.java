@@ -10,6 +10,7 @@ public class BoardVO {
 	private String writer;
 	private Date regdate;
 	private int readcount;
+	private int replecount;
 	
 	public int getBno() {
 		return bno;
@@ -48,11 +49,19 @@ public class BoardVO {
 		this.readcount = readcount;
 	}
 	
+	public int getReplecount() {
+		return replecount;
+	}
+	public void setReplecount(int replecount) {
+		this.replecount = replecount;
+	}
 	@Override
 	public String toString() {
 		return "BoardVO [bno=" + bno + ", title=" + title + ", content=" + content + ", writer=" + writer + ", regdate="
-				+ regdate + ", readcount=" + readcount + "]";
+				+ regdate + ", readcount=" + readcount + ", replecount=" + replecount + "]";
 	}
+	
+	
 	
 	
 }

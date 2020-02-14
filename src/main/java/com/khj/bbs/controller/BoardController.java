@@ -25,9 +25,10 @@ public class BoardController {
 
 	@RequestMapping("/list")
 	public String list(@ModelAttribute("cri") Criteria cri, Model model) {
+		System.out.println(cri.getType());
 		int totalCount = service.totalCount(cri);
 		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCri(cri);
+		pageMaker.setCri(cri);		
 		pageMaker.setTotalCount(totalCount);
 		model.addAttribute("pageMaker", pageMaker);
 		model.addAttribute("list", service.selectAll(cri));
@@ -47,7 +48,6 @@ public class BoardController {
 	
 	@GetMapping("/update")
 	public String update(@ModelAttribute("cri") Criteria cri, @RequestParam int bno, @ModelAttribute("board") BoardVO board, Model model) {		
-		System.out.println(bno);
 		model.addAttribute("board",service.selectOne(bno));
 		return "update";
 	}
@@ -57,6 +57,8 @@ public class BoardController {
 		service.update(board);
 		rttr.addAttribute("page", cri.getPage());
 		rttr.addAttribute("perPageNum", cri.getPerPageNum());
+		rttr.addAttribute("type", cri.getType());
+		rttr.addAttribute("type", cri.getKeyword());
 		return "redirect:list"; 
 	}
 	
@@ -65,6 +67,8 @@ public class BoardController {
 		service.delete(bno);
 		rttr.addAttribute("page", cri.getPage());
 		rttr.addAttribute("perPageNum", cri.getPerPageNum());
+		rttr.addAttribute("type", cri.getType());
+		rttr.addAttribute("type", cri.getKeyword());
 		return "redirect:list";
 	}
 }

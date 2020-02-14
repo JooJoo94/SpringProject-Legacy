@@ -56,7 +56,7 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public int totalCount(Criteria cri) {
 		
-		return mapper.totalCount();		//레코드 개수 가져옴
+		return mapper.totalCount(cri);		//레코드 개수 가져옴
 	}
 
 

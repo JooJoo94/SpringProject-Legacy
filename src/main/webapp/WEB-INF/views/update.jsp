@@ -32,5 +32,32 @@
 		
 	</table>
 </form>
+	<form id="jobForm">
+		<input type="hidden" name="page" value="$cri.page}"> 
+		<input type="hidden" name="perPageNum" value="${cri.perPageNum}">
+	</form>
+	<script type="text/javascript">
+		var jobForm = $('#jobForm');
+
+		$('#list').on('click', function(event) {
+			// 원래 a 링크 클릭을 막는다
+			event.preventDefault();
+
+			//$(this) = 내가 이벤트 준 것
+			var targetPage = $(this).attr('href');
+
+			jobForm.find("[name='page']").val(targetPage);
+			jobForm.attr('action', '/list').attr('method', 'get');
+			jobForm.submit();
+		});
+
+		$('.read').on('click', function(event) {
+					event.preventDefault();
+					jobForm.append("<input type='hidden' name='bno' value='"
+							+ $(this).attr("href") + "'>");
+					jobForm.attr('action', '/update').attr('method', 'get');
+					jobForm.submit();
+				});
+	</script>
 </body>
 </html>
