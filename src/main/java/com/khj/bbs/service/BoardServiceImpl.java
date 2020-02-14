@@ -32,7 +32,8 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public BoardVO selectOne(int bno) {
 		
-		return mapper.selectOne(bno);
+		mapper.updateReadCount(bno);
+		return mapper.read(bno);
 	}
 
 	@Override

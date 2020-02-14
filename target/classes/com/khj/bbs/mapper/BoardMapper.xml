@@ -43,6 +43,12 @@
 		bno=#{bno}
 	</select>
 
+	<select id="read" resultType="com.khj.bbs.dto.BoardVO">
+  	<![CDATA[
+  	select * from board where bno=#{bno}
+  	]]>
+	</select>
+
 	<!-- <insert id="insertSelectkey"> <selectkey keyProperty="bno" order="BEFORE" 
 		resultType="int"> select board_seq.nextvl from dual </selectkey> insert into 
 		board(bno, title, content, writer) values(board_seq.nextval, #{title}, #{content), 
@@ -56,5 +62,10 @@
 	<delete id="delete">
 		delete from board where bno=#{bno}
 	</delete>
+
+	<update id="updateReadCount">
+		update board set readcount=readCount+1 where
+		bno=#{bno}
+	</update>
 
 </mapper>

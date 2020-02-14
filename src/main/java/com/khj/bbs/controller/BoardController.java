@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.khj.bbs.dto.BoardVO;
 import com.khj.bbs.dto.Criteria;
@@ -45,23 +46,25 @@ public class BoardController {
 	}
 	
 	@GetMapping("/update")
-	public String update(@RequestParam int bno, @ModelAttribute("board") BoardVO board, Model model) {		
-		
+	public String update(@ModelAttribute("cri") Criteria cri, @RequestParam int bno, @ModelAttribute("board") BoardVO board, Model model) {		
+		System.out.println(bno);
 		model.addAttribute("board",service.selectOne(bno));
 		return "update";
 	}
 	
 	@PostMapping("/update")
-	public String update(@ModelAttribute("board") BoardVO board) {
+	public String update(@ModelAttribute("cri") Criteria cri, @ModelAttribute("board") BoardVO board, RedirectAttributes rttr) {
 		service.update(board);
-		
-		return "redirect:list";
+		rttr.addAttribute("page", cri.getPage());
+		rttr.addAttribute("perPageNum", cri.getPerPageNum());
+		return "redirect:list"; 
 	}
 	
 	@GetMapping("/delete")
-	public String delete(@RequestParam("bno") int bno) {
+	public String delete(@RequestParam("bno") int bno,  RedirectAttributes rttr, @ModelAttribute("cri") Criteria cri ) {
 		service.delete(bno);
-		
+		rttr.addAttribute("page", cri.getPage());
+		rttr.addAttribute("perPageNum", cri.getPerPageNum());
 		return "redirect:list";
 	}
 }

@@ -10,6 +10,8 @@ public class Criteria {
 		this.perPageNum=10;
 	}
 	
+	
+	
 	public void setPage(int page) {
 		if(page <= 0) {
 			this.page=1;

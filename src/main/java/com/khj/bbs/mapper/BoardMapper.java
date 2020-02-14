@@ -14,7 +14,7 @@ public interface BoardMapper {
 	public BoardVO read(int bno);
 	public void delete(int bno);
 	public int update(BoardVO board);
-	public void updateReadCount();
+	public void updateReadCount(int bno);
 	public List<BoardVO> oraListPaging(Criteria cri);
 	public int totalCount();
 
